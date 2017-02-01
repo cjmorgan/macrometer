@@ -1,0 +1,28 @@
+<div id="navigation" class="row">  
+  <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <li 
+        
+        *ngFor="let tab of tabs" 
+          
+          id="{{tab.id}}"
+
+          [class.active]="tab.id == selectedTab">
+
+            <a 
+              routerLink="/{{tab.id}}"
+              (click)="onSelect(tab.id)">
+                {{tab.title}}
+            </a>
+
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div id="main" class="row">
+  <div class="col-md-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

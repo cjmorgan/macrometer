@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "server",
+        "sourceMap": true
+    },
+    "compileOnSave": false,
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules/**",
+        "dist",
+        "client"
+    ]
+}

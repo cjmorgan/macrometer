@@ -1,0 +1,23 @@
+{
+  "name": "macrometer",
+  "version": "0.0.1",
+  "description": "Macronutrient Tracker",
+  "main": "server/main.js",
+  "scripts": {
+    "start": "tsc && concurrently \"cd client && tsc -w\" \"node server/main.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "0.0.33",
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.4",
+    "concurrently": "^3.1.0",
+    "typescript": "^2.1.5"
+  }
+}
