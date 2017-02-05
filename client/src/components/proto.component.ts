@@ -75,7 +75,7 @@ export class ProtoComponent implements OnInit {
 
   private _food:Nutrients;
   private _triWidth:number = 300;
-  private _triPadding:number = 20;
+  private _triPadding:number = 40;
 
   private rootEl:any;
 
@@ -100,35 +100,36 @@ export class ProtoComponent implements OnInit {
 
     this.rootEl = d3.select('#nutrients')
       .attr('width', width)
-      .attr('height', height)
-      .style('background', '#000');
+      .attr('height', height);
 
-    tri.center = new Point({x: width/2, y: tri.altitude*(2/3)+this._triPadding});
+    tri.center = new Point({x: width/2, y: tri.altitude*(2/3)+this._triPadding * .75});
 
     let triPoints = tri.corners;
-
-    // this.drawTriangle(triPoints.a, triPoints.b, triPoints.c, '#fff');
-    // this.drawPoint(tri.center, 5, '#fff')
 
     let portions = this._food.portions;
     let measuredPt = tri.getPointForTrilinear(portions.protein, portions.carbohydrate, portions.fat);
 
-    this.drawTriangle(triPoints.a, triPoints.b, measuredPt, '#f00');
-    this.drawTriangle(triPoints.b, triPoints.c, measuredPt, '#0f0');
-    this.drawTriangle(triPoints.c, triPoints.a, measuredPt, '#00f');
+    this.drawTriangle(triPoints.b, triPoints.c, measuredPt, 'protein');
+    this.drawTriangle(triPoints.c, triPoints.a, measuredPt, 'carbohydrate');
+    this.drawTriangle(triPoints.a, triPoints.b, measuredPt, 'fat');
 
-    this.drawPoint(measuredPt, 3, '#fff');
-
+    this.drawPoint(measuredPt, 5, '#fff');
+    this.drawLabel("C", width * .25, height * .5 - this._triPadding *.25, 'carbohydrate');
+    this.drawLabel("F", width * .75, height * .5 - this._triPadding *.25, 'fat');
+    this.drawLabel("P", width * .5, height - 10 - this._triPadding *.25, 'protein');
   }
 
   getSVGPoints(a:Point, b:Point, c:Point):string {
     return `${a.x},${a.y} ${b.x},${b.y} ${c.x},${c.y}`
   }
 
-  drawTriangle(ptA:Point, ptB:Point, ptC:Point, fillColor:string) {
-    this.rootEl.append('polygon')
-      .attr('points', this.getSVGPoints(ptA, ptB, ptC))
-      .attr('fill', fillColor);
+  drawTriangle(ptA:Point, ptB:Point, ptC:Point, classes:string = "") {
+    let poly = this.rootEl.append('polygon')
+      .attr('points', this.getSVGPoints(ptA, ptB, ptC));
+
+    if (classes.length > 0) {
+      poly.attr('class', classes);
+    }
   }
 
   drawPoint(pt:Point, size:number, color:string) {
@@ -136,7 +137,15 @@ export class ProtoComponent implements OnInit {
       .attr('cx', pt.x)
       .attr('cy', pt.y)
       .attr('r', size)
-      .attr('fill', color)
+      .attr('class', 'point');
+  }
+
+  drawLabel(text:string, x:number, y:number, classes:string) {
+    this.rootEl.append('text')
+      .attr('x', x)
+      .attr('y', y)
+      .attr('class', classes)
+      .text(text);
   }
 
 }

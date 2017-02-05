@@ -1,0 +1,36 @@
+#nutrients {
+  border-radius: 32px;
+  background-color: #333;
+  border: 3px solid #aaa;
+}
+
+#nutrients polygon {
+  stroke: #fff;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+
+#nutrients .carbohydrate {
+  fill: rgb(25, 139, 224);
+}
+
+#nutrients .protein {
+  fill: rgb(0, 152, 77);
+}
+
+#nutrients .fat {
+  fill: rgb(207, 69, 30);
+}
+
+#nutrients .point {
+  stroke: #fff;
+  stroke-width: 2px;
+  fill: #aaa;
+}
+
+#nutrients text {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  text-anchor: middle;
+}
