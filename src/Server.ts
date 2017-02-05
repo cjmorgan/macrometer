@@ -4,6 +4,7 @@ import bodyParser = require('body-parser');
 import path       = require('path');
 
 import {Routes} from './routes/Routes';
+import {Database} from './model/Database';
 
 export class Server {
 
@@ -11,7 +12,7 @@ export class Server {
   identity:String = "Macrometer";
 
 
-  constructor(port:number = 8080) {
+  constructor({port = 8080}: {port:number}) {
 
     this.app = express();
     this.app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,7 +24,6 @@ export class Server {
     this.app.listen(port);
 
     console.log(`${this.id} Server running on ${port}`);
-
   }
 
   get id():String {

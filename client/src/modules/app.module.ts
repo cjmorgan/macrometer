@@ -5,8 +5,10 @@ import { RouterModule }  from '@angular/router';
 
 import { HeaderComponent }  from '../components/header.component';
 import { MainComponent} from '../components/main.component';
+import { ProtoComponent } from '../components/proto.component';
 
 import { IdService } from '../services/id.service';
+import { FoodService } from '../services/food.service';
 
 import { routes } from '../routes/routes';
 
@@ -18,14 +20,17 @@ import { routes } from '../routes/routes';
   ],
   declarations: [
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    ProtoComponent
   ],
   providers: [
-    IdService
+    IdService,
+    FoodService
   ],
   bootstrap: [
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    ProtoComponent
   ]
 })
 
